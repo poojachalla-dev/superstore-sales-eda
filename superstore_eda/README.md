@@ -23,11 +23,10 @@ lubridate
 
 The dataset used in this project is the Superstore dataset, commonly used for data analytics practice.
 
-Dataset Source:
+**Dataset Source:**
 https://www.kaggle.com/datasets/vivek468/superstore-dataset-final
 
-File Used:
-Sample - Superstore.csv
+**Columns:**
 
 Order date
 
