@@ -21,7 +21,13 @@ lubridate
 
 **Dataset**
 
-The dataset contains transactional sales data from a retail superstore. Each row represents a product order and includes information such as:
+The dataset used in this project is the Superstore dataset, commonly used for data analytics practice.
+
+Dataset Source:
+https://www.kaggle.com/datasets/vivek468/superstore-dataset-final
+
+File Used:
+Sample - Superstore.csv
 
 Order date
 
