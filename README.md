@@ -67,7 +67,7 @@ data/train.csv
 # 📁 Project Structure
 
 ```
-superstore_eda
+superstore-sales-eda
 │
 ├── data
 │   └── train.csv
