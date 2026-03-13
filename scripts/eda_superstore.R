@@ -117,13 +117,25 @@ top_products
 # 11. Visualization: Sales by Category
 # -----------------------------
 
-ggplot(sales, aes(x = category, y = sales)) +
+library(ggplot2)
+library(RColorBrewer)
+
+ggplot(sales, aes(x = category, y = sales, fill = category)) +
   geom_bar(stat = "summary", fun = "sum") +
+  scale_fill_brewer(palette = "Set2") +   # Distinct, professional colors for categories
   labs(
     title = "Total Sales by Category",
     x = "Category",
-    y = "Total Sales"
+    y = "Total Sales",
+    fill = "Category"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    axis.title = element_text(size = 12),
+    legend.position = "right"
   )
+
 
 
 
@@ -131,14 +143,24 @@ ggplot(sales, aes(x = category, y = sales)) +
 # 12. Visualization: Sales by Region
 # -----------------------------
 
-ggplot(sales, aes(x = region, y = sales)) +
+library(ggplot2)
+library(RColorBrewer)
+
+ggplot(sales, aes(x = region, y = sales, fill = region)) +
   geom_bar(stat = "summary", fun = "sum") +
+  scale_fill_brewer(palette = "Set2") +  # Assigns distinct colors to each region
   labs(
     title = "Total Sales by Region",
     x = "Region",
-    y = "Total Sales"
+    y = "Total Sales",
+    fill = "Region"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    axis.title = element_text(size = 12),
+    legend.position = "right"
   )
-
 
 # -----------------------------
 # 13. Save Plot
@@ -169,15 +191,21 @@ monthly_sales <- sales %>%
 monthly_sales
 
 # Plot monthly sales trend
+
 ggplot(monthly_sales, aes(x = month, y = total_sales, group = 1)) +
-  geom_line() +
-  geom_point() +
+  geom_line(color = "steelblue", size = 1.2) +   # Line color
+  geom_point(color = "tomato", size = 3) +       # Point color
   labs(
     title = "Monthly Sales Trend",
     x = "Month",
     y = "Total Sales"
   ) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    axis.title = element_text(size = 12)
+  )
 
 
 
@@ -195,11 +223,20 @@ top_states <- sales %>%
 top_states
 
 # Plot top states
-ggplot(top_states, aes(x = reorder(state, total_sales), y = total_sales)) +
+top_states$state <- factor(top_states$state, levels = top_states$state)
+
+ggplot(top_states, aes(x = reorder(state, total_sales), y = total_sales, fill = state)) +
   geom_bar(stat = "identity") +
   coord_flip() +
+  scale_fill_brewer(palette = "Set3") +
   labs(
     title = "Top 10 States by Revenue",
     x = "State",
     y = "Total Sales"
+  ) +
+    theme_minimal() +      # Clean, modern look
+      theme(
+        legend.position = "none",   # Remove legend (since labels are clear)
+        plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+        axis.title = element_text(size = 12)
   )
