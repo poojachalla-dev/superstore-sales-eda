@@ -1,83 +1,67 @@
-# 📊 Superstore Sales Exploratory Data Analysis (EDA)
+# 📊 Superstore Sales — Exploratory Data Analysis (EDA) in R
 
-A data analysis project that explores retail sales data to uncover insights about **sales performance, regional trends, product demand, and revenue distribution** using the **R programming language**.
+> Exploring retail sales data to uncover revenue patterns, regional performance, product trends, and seasonal behavior — using R and ggplot2.
 
-This project demonstrates how **Exploratory Data Analysis (EDA)** can be used to understand business data, identify patterns, and support data-driven decision-making.
-
----
-
-# 📌 Project Overview
-
-The goal of this project is to analyze sales data from a retail superstore and identify important business insights related to:
-
-* Product category performance
-* Regional sales distribution
-* Top-performing states
-* Monthly sales trends
-* Product-level revenue contributions
-
-Using **R and data visualization techniques**, the dataset was explored to discover patterns that could help businesses optimize sales strategy and market focus.
+![R](https://img.shields.io/badge/R-276DC3?style=flat-square&logo=r&logoColor=white)
+![tidyverse](https://img.shields.io/badge/tidyverse-1A162D?style=flat-square&logo=r&logoColor=white)
+![ggplot2](https://img.shields.io/badge/ggplot2-FC6767?style=flat-square&logo=r&logoColor=white)
+![RStudio](https://img.shields.io/badge/RStudio-75AADB?style=flat-square&logo=rstudio&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen?style=flat-square)
 
 ---
 
-# 🛠 Tools and Technologies
+## 📌 Project Overview
 
-This project was built using the following tools:
+This project applies **Exploratory Data Analysis (EDA)** to the Superstore Sales dataset to answer real business questions about what drives revenue, which regions and products perform best, and where seasonal demand peaks occur.
 
-* **R** – Data analysis and processing
-* **RStudio** – Development environment
-* **tidyverse** – Data manipulation and transformation
-* **ggplot2** – Data visualization
-* **janitor** – Data cleaning and column formatting
-* **lubridate** – Date and time processing
-
-These tools are widely used in **data science and analytics workflows**.
+**Workflow:** Data Loading → Cleaning → Exploration → Visualization → Insights
 
 ---
 
-# 📂 Dataset
+## ❓ Business Questions Answered
 
-The dataset used in this project is the **Superstore Sales Dataset**, commonly used for learning data analysis and business intelligence techniques.
+1. 📦 Which product categories generate the most revenue?
+2. 🌎 Which regions and states are the strongest markets?
+3. 🏆 Which products contribute the most to total sales?
+4. 📈 Are there seasonal trends in monthly sales?
+5. 🎯 Where is revenue most concentrated geographically?
 
-**Dataset Source:**
-https://www.kaggle.com/datasets/vivek468/superstore-dataset-final
+---
 
-### Dataset Columns
+## 📂 Dataset
 
-| Column           | Description                      |
-| ---------------- | -------------------------------- |
-| Order Date       | Date when the order was placed   |
-| Product Category | Category of the product          |
-| Product Name     | Name of the product              |
-| Sales            | Sales amount                     |
-| Region           | Geographic sales region          |
-| State            | State where the order was placed |
-| City             | City where the order was placed  |
-| Discount         | Discount applied to the order    |
-| Quantity         | Number of items ordered          |
+**Source:** [Kaggle — Superstore Dataset](https://www.kaggle.com/datasets/vivek468/superstore-dataset-final)
 
-The dataset used in this project is stored as:
+A widely-used retail dataset ideal for learning business intelligence and data analysis techniques.
+
+| Column | Description |
+|--------|-------------|
+| `Order Date` | Date the order was placed |
+| `Product Category` | Category of the product sold |
+| `Product Name` | Name of the product |
+| `Sales` | Revenue from the transaction |
+| `Region` | Geographic sales region |
+| `State` | State where the order was placed |
+| `City` | City where the order was placed |
+| `Quantity` | Number of items ordered |
+| `Discount` | Discount applied to the order |
+
+---
+
+## 📁 Project Structure
 
 ```
-data/train.csv
-```
-
----
-
-# 📁 Project Structure
-
-```
-superstore-sales-eda
+superstore-sales-eda/
 │
-├── data
-│   └── train.csv
+├── data/
+│   └── train.csv                      # Raw dataset
 │
-├── scripts
-│   └── eda_superstore.R
+├── scripts/
+│   └── eda_superstore.R               # Full analysis script
 │
-├── plots
-│   ├── sales_by_region.png
+├── plots/
 │   ├── sales_by_category.png
+│   ├── sales_by_region.png
 │   ├── monthly_sales_trend.png
 │   └── top_10_states_by_revenue.png
 │
@@ -86,199 +70,122 @@ superstore-sales-eda
 
 ---
 
-# 🔍 Data Analysis Process
+## 🛠️ Tools & Libraries
 
-The analysis was performed through several stages of exploratory data analysis.
+| Tool | Purpose |
+|------|---------|
+| **R** | Core analysis language |
+| **RStudio** | Development environment |
+| **tidyverse** | Data manipulation & transformation |
+| **ggplot2** | Data visualization |
+| **janitor** | Column name cleaning & standardization |
+| **lubridate** | Date parsing and time-based aggregations |
 
 ---
 
-## 1️⃣ Data Loading
+## ▶️ How to Run
 
-The dataset was imported into R using:
-
+**1. Clone the repository**
+```bash
+git clone https://github.com/poojachalla-dev/superstore-sales-eda.git
+cd superstore-sales-eda
 ```
-read.csv()
+
+**2. Install required R packages**
+```r
+install.packages(c("tidyverse", "janitor", "lubridate", "ggplot2"))
 ```
 
-The data was then stored as a **data frame** for further analysis.
-
----
-
-## 2️⃣ Data Exploration
-
-Initial data exploration included:
-
-* Viewing the first rows of the dataset
-* Checking dataset structure
-* Reviewing summary statistics
-* Inspecting column names and data types
-
-These steps helped understand the dataset before performing deeper analysis.
-
----
-
-## 3️⃣ Data Cleaning
-
-To ensure consistent formatting for analysis:
-
-* Column names were standardized using the **janitor** package
-* Data types were reviewed and adjusted where necessary
-
-Clean and standardized data improves analysis accuracy and reduces errors.
-
----
-
-## 4️⃣ Missing Value Check
-
-Missing values were identified using:
-
+**3. Run the analysis**
+```r
+source("scripts/eda_superstore.R")
 ```
+
+Charts will be saved automatically to the `plots/` folder.
+
+---
+
+## 🔍 Analysis Steps
+
+**1. Data Loading** — Imported CSV using `read.csv()` into an R data frame
+
+**2. Data Exploration** — Reviewed structure, dimensions, column types, and summary statistics
+
+**3. Data Cleaning** — Standardized column names with `janitor::clean_names()`, corrected data types, parsed dates with `lubridate`
+
+**4. Missing Value Check**
+```r
 colSums(is.na(data))
 ```
 
-This step ensures the dataset does not contain critical missing values that could affect results.
+**5. EDA** — Grouped aggregations and visualizations across categories, regions, states, and time
 
 ---
 
-# 📊 Exploratory Data Analysis
+## 📊 Visualizations
 
-Several analyses were performed to understand sales performance across different dimensions.
-
----
-
-## 📦 Sales by Category
-
-Sales totals were calculated for each product category to determine which category contributes the most revenue.
-
-This analysis helps businesses understand **which product groups drive overall sales**.
-
----
-
-## 🌎 Sales by Region
-
-Regional sales performance was analyzed to determine which geographic regions generate the highest revenue.
-
-This insight can help companies focus marketing and expansion strategies in **high-performing regions**.
-
----
-
-## 🛒 Top Products by Sales
-
-Products generating the highest sales were identified using grouped aggregations and sorting.
-
-Understanding product performance helps businesses:
-
-* Optimize product inventory
-* Identify popular products
-* Improve product promotion strategies
-
----
-
-## 📈 Monthly Sales Trend
-
-Order dates were converted to date format and aggregated by month to visualize **sales trends over time**.
-
-This analysis highlights **seasonal patterns and fluctuations in sales performance**.
-
----
-
-## 🏆 Top 10 States by Revenue
-
-Sales were aggregated by state to identify which states generate the most revenue.
-
-This helps businesses understand **where their strongest markets are located**.
-
----
-
-# 📊 Visualizations
-
-The project includes several visualizations created using **ggplot2**.
-
-### Key Charts
-
-* 📊 Sales by Category
-* 🌎 Sales by Region
-* 📈 Monthly Sales Trend
-* 🏆 Top 10 States by Revenue
-
-Visualization files are stored in:
-
-```
-plots
-```
-
----
-
-## Example Visualizations
-
-### Sales by Category
+### 📦 Sales by Category
+> Technology leads revenue, followed by Furniture and Office Supplies.
 
 ![Sales by Category](plots/sales_by_category.png)
 
-### Sales by Region
+---
+
+### 🌎 Sales by Region
+> The West and East regions dominate — the South and Central lag behind.
 
 ![Sales by Region](plots/sales_by_region.png)
 
-### Monthly Sales Trend
+---
+
+### 📈 Monthly Sales Trend
+> Sales peak toward Q4, reflecting seasonal holiday demand patterns.
 
 ![Monthly Sales Trend](plots/monthly_sales_trend.png)
 
-### Top States by Revenue
+---
 
-![Top States](plots/top_10_states_by_revenue.png)
+### 🏆 Top 10 States by Revenue
+> California and New York lead by a wide margin — revenue is highly concentrated.
+
+![Top 10 States by Revenue](plots/top_10_states_by_revenue.png)
 
 ---
 
-# 💡 Key Insights
+## 💡 Key Findings
 
-The exploratory analysis revealed several important patterns:
-
-* Certain **product categories generate significantly higher sales**.
-* Sales performance **varies across different geographic regions**.
-* A **small number of products contribute a large portion of total revenue**.
-* Sales fluctuate across months, indicating **possible seasonal trends**.
-* Revenue is concentrated in a **limited number of states**.
-
----
-
-# 📈 Business Implications
-
-These insights can help businesses:
-
-* Focus marketing efforts on **high-performing regions**
-* Increase inventory for **top-selling products**
-* Identify **growth opportunities in underperforming regions**
-* Use historical trends to support **sales forecasting**
+| Finding | Detail |
+|---------|--------|
+| 📦 **Category dominance** | A single category drives a disproportionate share of total revenue |
+| 🌍 **Regional concentration** | The West region outperforms others significantly |
+| 🏆 **State-level Pareto** | A handful of states generate the majority of revenue |
+| 📅 **Q4 seasonality** | Sales spike in the final quarter — consistent with retail holiday trends |
+| 🛒 **Product skew** | A small number of products account for a large portion of sales |
 
 ---
 
-# 🎯 Skills Demonstrated
+## 📌 Business Recommendations
 
-This project highlights several core **data analyst and data science skills**:
-
-* Exploratory Data Analysis (EDA)
-* Data cleaning and preprocessing
-* Data visualization with ggplot2
-* Data manipulation using tidyverse
-* Identifying business insights from raw data
+- 🎯 **Double down on the West** — prioritize marketing and inventory in top-performing regions
+- 📦 **Invest in top categories** — Technology products show the strongest revenue potential
+- 📅 **Plan for Q4** — increase stock and promotional campaigns ahead of seasonal demand peaks
+- 🌱 **Grow underperforming regions** — targeted campaigns in the South and Central could unlock growth
+- 🔍 **Discount analysis** — investigate whether heavy discounting is eroding margins
 
 ---
 
-# 🚀 Future Improvements
+## 🚀 Future Improvements
 
-Potential extensions of this project include:
-
-* Customer segmentation analysis
-* Profitability analysis
-* Discount impact analysis
-* Sales forecasting using time series models
-* Building an interactive dashboard
+- [ ] Customer segmentation analysis
+- [ ] Profitability vs. discount impact analysis
+- [ ] Sales forecasting with time series models (ARIMA / Prophet)
+- [ ] Interactive dashboard in Shiny or Tableau
 
 ---
 
-# 👩‍💻 Author
+## 👩‍💻 Author
 
-**Pooja Challa**
+**Pooja Challa** — Data Analyst · R · SQL · Tableau
 
-Data Analysis Portfolio Project
-Tools: **R • ggplot2 • tidyverse • RStudio**
+[![GitHub](https://img.shields.io/badge/GitHub-poojachalla--dev-181717?style=flat-square&logo=github)](https://github.com/poojachalla-dev)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-poojachalla-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/poojachalla)
